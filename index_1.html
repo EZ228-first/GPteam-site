@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GP TEAM — киберспортивная организация по Dota 2. Состав, достижения, матчи и контакты команды.">
+
+    <!-- Превью при шаринге в Telegram / Discord / VK -->
+    <meta property="og:title" content="GP TEAM | Официальный сайт">
+    <meta property="og:description" content="Киберспортивная организация по Dota 2. Состав, достижения, матчи и контакты.">
+    <meta property="og:image" content="gp_team.jpg">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#0a0d11">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚔️</text></svg>">
+    <title>GP TEAM | Официальный сайт</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0a0d11;
+            background-image:
+                radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 1px, transparent 0);
+            background-size: 28px 28px;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .subtitle, nav a, .role, .place, .stat-value {
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+        }
+
+        /* Навигация */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 18px 20px;
+            background: rgba(11, 14, 17, 0.85);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #21262d;
+            z-index: 100;
+        }
+
+        nav a {
+            color: #8b949e;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s ease;
+        }
+
+        nav a:hover {
+            color: #3498db;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle, #1a1f26 0%, #0b0e11 100%);
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            color: #4da3e8;
+            font-size: 1.2rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            margin-top: 45px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .stat-label {
+            font-size: 0.7rem;
+            color: #6e7681;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-top: 2px;
+        }
+
+        .stat-divider {
+            width: 1px;
+            background: #21262d;
+        }
+
+        section {
+            padding: 80px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            scroll-margin-top: 70px;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        section.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #3498db;
+            outline-offset: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .player-card, section, .scroll-indicator::before {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+        }
+
+        h2 {
+            border-left: 4px solid #3498db;
+            padding-left: 15px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 1.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        .divider {
+            height: 3px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: linear-gradient(90deg, transparent, #3498db, transparent);
+            opacity: 0.5;
+        }
+
+        .about-text {
+            color: #c9d1d9;
+            font-size: 1.05rem;
+            max-width: 700px;
+        }
+
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .player-card {
+            background: #12161c;
+            padding: 24px 20px;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #262c34;
+            border-top: 3px solid #3498db;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .player-card h3 {
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            margin: 6px 0 0;
+        }
+
+        .player-card:nth-child(1) { animation-delay: 0.05s; }
+        .player-card:nth-child(2) { animation-delay: 0.1s; }
+        .player-card:nth-child(3) { animation-delay: 0.15s; }
+        .player-card:nth-child(4) { animation-delay: 0.2s; }
+        .player-card:nth-child(5) { animation-delay: 0.25s; }
+        .player-card:nth-child(6) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .player-card:hover {
+            transform: translateY(-10px);
+            border-color: #3498db;
+            box-shadow: 0 10px 30px -10px rgba(52, 152, 219, 0.4);
+        }
+
+        .role {
+            font-size: 0.8rem;
+            color: #8b949e;
+            text-transform: uppercase;
+        }
+
+        /* Достижения */
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .achievement-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .achievement-card .place {
+            font-size: 1.8rem;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .achievement-card .event {
+            color: #c9d1d9;
+            margin-top: 5px;
+        }
+
+        .achievement-card .date {
+            color: #8b949e;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        /* Контакты */
+        .socials {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            padding: 12px 20px;
+            border-radius: 8px;
+            color: #ffffff;
+            text-decoration: none;
+            transition: border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .social-link:hover {
+            border-color: #3498db;
+            color: #3498db;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background: #0d1117;
+            color: #8b949e;
+            font-size: 0.9rem;
+        }
+
+        .scroll-indicator {
+            margin-top: 60px;
+            width: 24px;
+            height: 40px;
+            border: 2px solid #3498db;
+            border-radius: 20px;
+            position: relative;
+            opacity: 0.7;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            width: 4px;
+            height: 8px;
+            background: #3498db;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            animation: scrollDot 1.6s ease infinite;
+        }
+
+        @keyframes scrollDot {
+            0% { top: 8px; opacity: 1; }
+            60% { top: 20px; opacity: 0; }
+            100% { top: 20px; opacity: 0; }
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 46px;
+            height: 46px;
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 50%;
+            color: #3498db;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            text-decoration: none;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+            z-index: 99;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .back-to-top:hover {
+            border-color: #3498db;
+            transform: translateY(-4px);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .news-card {
+            background: #161b22;
+            border: 1px solid #30363d;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .news-card .news-date {
+            color: #8b949e;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .news-card h3 {
+            margin: 10px 0;
+        }
+
+        .news-card p {
+            color: #c9d1d9;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+
+        .nav-toggle {
+            display: none;
+            position: fixed;
+            top: 14px;
+            right: 20px;
+            z-index: 110;
+            width: 40px;
+            height: 40px;
+            background: #12161c;
+            border: 1px solid #262c34;
+            border-radius: 6px;
+            cursor: pointer;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .nav-toggle span {
+            width: 20px;
+            height: 2px;
+            background: #ffffff;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .nav-toggle.open span:nth-child(2) { opacity: 0; }
+        .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 700px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            nav {
+                justify-content: flex-start;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                max-height: 0;
+                overflow: hidden;
+                padding: 0 20px;
+                transition: max-height 0.35s ease, padding 0.35s ease;
+            }
+
+            nav.open {
+                max-height: 320px;
+                padding: 70px 20px 20px;
+            }
+
+            nav a {
+                padding: 12px 0;
+                width: 100%;
+                border-bottom: 1px solid #1c2128;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.4rem;
+                letter-spacing: 2px;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+            }
+
+            nav a {
+                font-size: 0.75rem;
+            }
+
+            section {
+                padding: 60px 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Меню">
+        <span></span><span></span><span></span>
+    </button>
+
+    <nav id="mainNav">
+        <a href="#roster" class="nav-link">Состав</a>
+        <a href="#about" class="nav-link">О команде</a>
+        <a href="#achievements" class="nav-link">Достижения</a>
+        <a href="#news" class="nav-link">Новости</a>
+        <a href="#matches" class="nav-link">Матчи</a>
+        <a href="#contacts" class="nav-link">Контакты</a>
+    </nav>
+
+    <header>
+        <img src="gp_team.jpg" alt="GP TEAM LOGO" style="width: 250px; height: auto; margin-bottom: 20px;">
+        <h1>GP TEAM</h1>
+        <p class="subtitle">Киберспортивная организация</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">2026</div>
+                <div class="stat-label">Основана</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-value">Dota 2</div>
+                <div class="stat-label">Дисциплина</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+                <div class="stat-value">CIS</div>
+                <div class="stat-label">Регион</div>
+            </div>
+        </div>
+        <div class="scroll-indicator"></div>
+    </header>
+
+    <div class="divider"></div>
+
+    <section id="roster">
+        <h2>Состав команды</h2>
+        <div class="roster-grid">
+            <div class="player-card">
+                <div class="role">Captain / Carry</div>
+                <h3>fear of god</h3>
+            </div>
+            <div class="player-card">
+                <div class="role">Midlaner</div>
+                <h3>мазафакер</h3>
+            </div>
+            <div class="player-card">
+                <div class="role">Offlane</div>
+                <h3>пока хз</h3>
+            </div>
+            <div class="player-card">
+                <div class="role">Support</div>
+                <h3>пока хз</h3>
+            </div>
+            <div class="player-card">
+                <div class="role">Hard Support</div>
+                <h3>пока хз</h3>
+            </div>
+            <div class="player-card" style="border-top-color: #f1c40f;">
+                <div class="role" style="color: #f1c40f;">Team Manager</div>
+                <h3>EZ228</h3>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>О команде</h2>
+        <p class="about-text">
+            GP TEAM — молодая киберспортивная организация, собранная вокруг одной цели: закрепиться в
+            конкурентной сцене Dota 2 и пройти путь от локальных турниров до серьёзных
+            профессиональных лиг. Мы делаем ставку на дисциплину, командную игру и постоянный анализ
+            собственных ошибок — без этого в доте никуда.
+        </p>
+    </section>
+
+    <section id="achievements">
+        <h2>Достижения</h2>
+        <div class="achievements-grid">
+            <div class="achievement-card">
+                <div class="place">—</div>
+                <div class="event">Пока в процессе первого турнира</div>
+                <div class="date">2026</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="matches">
+        <h2>Ближайшие матчи</h2>
+        <div class="news-card" style="text-align: center; color: #8b949e;">
+            <p style="margin: 0;">На данный момент активных турниров нет.<br>Следите за обновлениями — расписание появится здесь.</p>
+        </div>
+    </section>
+
+    <section id="news">
+        <h2>Новости</h2>
+        <div class="news-grid">
+            <div class="news-card">
+                <div class="news-date">Июль 2026</div>
+                <h3>Сайт команды запущен</h3>
+                <p>GP TEAM выходит в онлайн. Следите за обновлениями состава, матчей и результатов.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacts">
+        <h2>Контакты</h2>
+        <div class="socials">
+            <a class="social-link" href="#" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M21.05 3.5 2.6 10.8c-1.25.5-1.24 1.2-.23 1.51l4.72 1.47 1.82 5.5c.22.6.38.85.78.85.4 0 .58-.18.8-.4l1.94-1.87 4.03 2.97c.74.41 1.28.2 1.47-.68l2.66-12.5c.28-1.08-.4-1.57-1.14-1.24Zm-11.3 10.4-.4 3.9-1.7-5.15 9-5.4c.28-.16.53.06.3.26z"/></svg>
+                <span>Telegram</span>
+            </a>
+            <a class="social-link" href="#" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13.16 19.2c-6.8 0-10.68-4.67-10.84-12.44h3.4c.11 5.75 2.66 8.19 4.68 8.7v-8.7h3.2v4.92c1.98-.21 4.06-2.48 4.77-4.92h3.2c-.54 3.02-2.8 5.29-4.4 6.22 1.6.75 4.18 2.73 5.16 6.22h-3.53c-.76-2.33-2.66-4.13-5.2-4.38v4.38z"/></svg>
+                <span>VK</span>
+            </a>
+            <a class="social-link" href="#" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M4 2 2 6.5V19h5.5V22h3l3-3H18l4-4V2Zm14.5 11-3.5 3.5h-4l-3 3v-3H4.5V4h14Z"/><path d="M15 8h1.5v4.5H15Zm-4.5 0H12v4.5h-1.5Z"/></svg>
+                <span>Twitch</span>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        &copy; 2026 GP TEAM. Все права защищены.
+    </footer>
+
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Наверх">↑</a>
+
+    <script>
+        // Плавное появление секций при прокрутке
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('section').forEach(section => {
+            revealObserver.observe(section);
+        });
+
+        // Мобильное меню
+        const navToggle = document.getElementById('navToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        navToggle.addEventListener('click', () => {
+            navToggle.classList.toggle('open');
+            mainNav.classList.toggle('open');
+        });
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navToggle.classList.remove('open');
+                mainNav.classList.remove('open');
+            });
+        });
+
+        // Подсветка активного пункта меню при скролле
+        const sections = document.querySelectorAll('section, header');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        function highlightNav() {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = '#3498db';
+                }
+            });
+        }
+
+        // Показ/скрытие кнопки "наверх"
+        const backToTop = document.getElementById('backToTop');
+
+        function toggleBackToTop() {
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        }
+
+        window.addEventListener('scroll', () => {
+            highlightNav();
+            toggleBackToTop();
+        });
+    </script>
+
+</body>
+</html>
