@@ -294,6 +294,21 @@
             margin-top: 5px;
         }
 
+        .achievement-card .score {
+            color: #6e7681;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .achievements-intro {
+            color: #8b949e;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
         /* Контакты */
         .socials {
             display: flex;
@@ -531,6 +546,28 @@
             gap: 16px;
         }
 
+        .gallery-item {
+            aspect-ratio: 16/9;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #262c34;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.06);
+            filter: brightness(1.1);
+        }
+
         .gallery-placeholder {
             aspect-ratio: 16/9;
             background: #12161c;
@@ -543,6 +580,96 @@
             font-size: 0.85rem;
             text-align: center;
             padding: 10px;
+        }
+
+        /* Лайтбокс */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(5, 7, 9, 0.95);
+            z-index: 200;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .lightbox.open {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 6px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 2rem;
+            color: #ffffff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            color: #ffffff;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            font-size: 1.4rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255,255,255,0.18);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        .lightbox-counter {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #8b949e;
+            font-size: 0.85rem;
+            font-family: 'Rajdhani', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 600px) {
+            .lightbox-nav {
+                width: 40px;
+                height: 40px;
+                font-size: 1.1rem;
+            }
         }
 
         @media (max-width: 600px) {
@@ -642,29 +769,26 @@
         <div class="roster-grid">
             <div class="player-card">
                 <div class="role">IGL</div>
-                <h3 class="tba">gobbBella</h3>
+                <h3>gobbBella</h3>
             </div>
             <div class="player-card">
                 <div class="role">Entry Fragger</div>
-                <h3 class="tba">dabo</h3>
+                <h3>dabo</h3>
             </div>
             <div class="player-card">
                 <div class="role">AWPer</div>
-                <h3 class="tba">kappa</h3>
+                <h3>kappa</h3>
             </div>
             <div class="player-card">
                 <div class="role">Support</div>
-                <h3 class="tba">dasd</h3>
+                <h3>dasd</h3>
             </div>
             <div class="player-card">
                 <div class="role">Lurker</div>
-                <h3 class="tba">andnt1</h3>
+                <h3>andnt1</h3>
             </div>
         </div>
 
-        <p style="text-align:center; color:#4d5560; font-size:0.85rem; margin-top:30px;">
-            TBA — слот открыт. Хочешь попробоваться в состав? <a href="#contacts" style="color:#3498db; text-decoration:none;">Напиши нам</a>.
-        </p>
     </section>
 
     <section id="about">
@@ -680,11 +804,22 @@
 
     <section id="achievements">
         <h2>Достижения</h2>
+        <p class="achievements-intro">Три турнира — три первых места. Начало, о котором не стыдно рассказать.</p>
         <div class="achievements-grid">
             <div class="achievement-card">
-                <div class="place">—</div>
-                <div class="event">Пока в процессе первого турнира</div>
-                <div class="date">2026</div>
+                <div class="place">🥇 1 место</div>
+                <div class="event">Cock Tournament S2</div>
+                <div class="score">GP Team 3:0 BAREBUH</div>
+            </div>
+            <div class="achievement-card">
+                <div class="place">🥇 1 место</div>
+                <div class="event">Phantom Cup S3</div>
+                <div class="score">GP Team 3:0 K37</div>
+            </div>
+            <div class="achievement-card">
+                <div class="place">🥇 1 место</div>
+                <div class="event">LTL CCT Season 1</div>
+                <div class="score">GP Team 3:2 Eagle Team</div>
             </div>
         </div>
     </section>
@@ -710,11 +845,25 @@
     <section id="gallery">
         <h2>Галерея</h2>
         <div class="gallery-grid">
-            <div class="gallery-placeholder">Скриншот / фото матча</div>
-            <div class="gallery-placeholder">Скриншот / фото матча</div>
-            <div class="gallery-placeholder">Скриншот / фото матча</div>
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="gallery_1.jpg" alt="GP Team vs Eagle Team — анонс финала LTL CCT Season 1" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="gallery_2.jpg" alt="GP Team — чемпионы LTL CCT Season 1" loading="lazy">
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="gallery_3.jpg" alt="Турнирная сетка Phantom Cup Season 3" loading="lazy">
+            </div>
         </div>
     </section>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Закрыть">&times;</button>
+        <button class="lightbox-nav lightbox-prev" onclick="changeSlide(-1)" aria-label="Предыдущее фото">&#8249;</button>
+        <img id="lightbox-img" src="" alt="">
+        <button class="lightbox-nav lightbox-next" onclick="changeSlide(1)" aria-label="Следующее фото">&#8250;</button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
 
     <section id="contacts">
         <h2>Контакты</h2>
@@ -743,6 +892,46 @@
     <a href="#" class="back-to-top" id="backToTop" aria-label="Наверх">↑</a>
 
     <script>
+        // Лайтбокс галереи
+        const galleryImages = ['gallery_1.jpg', 'gallery_2.jpg', 'gallery_3.jpg'];
+        let currentSlide = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCounter = document.getElementById('lightbox-counter');
+
+        function updateLightbox() {
+            lightboxImg.src = galleryImages[currentSlide];
+            lightboxCounter.textContent = (currentSlide + 1) + ' / ' + galleryImages.length;
+        }
+
+        function openLightbox(index) {
+            currentSlide = index;
+            updateLightbox();
+            lightbox.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        function changeSlide(direction) {
+            currentSlide = (currentSlide + direction + galleryImages.length) % galleryImages.length;
+            updateLightbox();
+        }
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
         // Текущий год в копирайте
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
